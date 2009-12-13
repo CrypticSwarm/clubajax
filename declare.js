@@ -1,49 +1,10 @@
-
 declare = function(){
-	// summary:
-		//		Creates a constructor Function from a
-		//		Function, and collection of methods, and
-		//		more Functions that are extended.
-		// description:
-		//		Similar in look and feel to Dojo declare as
-		//		far as order and number of arguments, although
-		//		constructed a little closer to prototypical
-		//		inheritance. All arguments passed into the
-		//		constructor are passed into all sub constructors.
-		// arguments:
-		//		Function, [Object|Function....]
-		//			The first argument is always the base
-		//			constructor. The last argument is always
-		//			an object of methods (or empty object) to
-		//			be mixed in (in the future would like to
-		//			make that object optional). Remaining
-		//			arguments are other constructors mixed in
-		//			using extend() (See below).
-		// example:
-		//		|	MyFunction = dojox.drawing.util.oo.declare(
-		//		|		MyOtherFunction,
-		//		|		YetAnotherFunction,
-		//		|		function(options){
-		//		|			// This is the main constructor. It will fire last.
-		//		|			// The other constructors will fire before this.
-		//		|		},
-		//		|		{
-		//		|			customType:"equation", // mixed in property
-		//		|			doThing: function(){   // mixed in method
-		//		|					
-		//		|			}
-		//		|		}	
-		//		|	);
-		//		|
-		//		|	var f = new MyFunction();
-		//
-		//
-		// first arg - required
-		//		constructor Function
-		// second arg(s) - optional
-		// 		mixin constructors
-		// last arg - optional
-		//		mixin object property bag
+	// first arg - required
+	//		constructor Function
+	// second arg(s) - optional
+	// 		mixin constructors
+	// last arg - optional
+	//		mixin object property bag
 	
 	var f, o, a = arguments;
 	
@@ -73,9 +34,6 @@ declare = function(){
 	return _f; // Function
 };
 
-//
-// Use a common object to track all instances, such as zindex for dialogs	
-//
 declare.mix = function(obj, props, f){
 	for(var nm in props){
 		if(obj[nm] !== undefined){
@@ -84,7 +42,7 @@ declare.mix = function(obj, props, f){
 			console.error(nm + " is not a valid parameter");
 		}else{
 			var upper = nm.charAt(0).toUpperCase() + nm.substring(1)
-			var o = this;//f.prototype;
+			var o = f.prototype;
 			
 			(function(){
 				var argName = nm;
