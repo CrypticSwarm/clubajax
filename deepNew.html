@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>Privates</title>
+	<script src="deepNew.js"></script>
+	<script>
+var base = { 
+    id: 'node',
+    opts: {
+        styles: {
+            color: 'red',
+            size: 'big',
+            shape: 'round'
+        },
+        text: 'i am a little teapot',
+        grabbag: {
+            item: [1,2,3],
+            name: 'hello'
+        }
+    },
+    subtitle: '42 some reference to some book.'
+};
+var Node = basicDeclare(base);
+var instance = new Node();
+
+console.group('base changes');
+  console.log('Did the change also affect instance');
+  console.group('base.id');
+    console.group('before');
+      console.log('base:', base.id);
+      console.log('instance:', instance.id);
+    console.groupEnd();
+    base.id = 'fake';
+    console.group('after');
+      console.log('base:', base.id);
+      console.log('instance:', instance.id);
+    console.groupEnd();
+  console.groupEnd();
+  console.group('base.opts.text');
+    console.group('before');
+      console.log('base:', base.opts.text);
+      console.log('instance:', instance.opts.text);
+    console.groupEnd();
+    base.opts.text = 'do you act like a clone?';
+    console.group('after');
+      console.log('base:', base.opts.text);
+      console.log('instance:', instance.opts.text);
+    console.groupEnd();
+  console.groupEnd();
+console.groupEnd();
+
+console.group('instance changes');
+  console.log('Base should remain unchanged');
+  console.group('instance.opts.text');
+    console.group('before');
+      console.log('base:', base.opts.text);
+      console.log('instance:', instance.opts.text);
+    console.groupEnd();
+    instance.opts.text = 'No... I am rebellious....';
+    console.group('after');
+      console.log('base:', base.opts.text);
+      console.log('instance:', instance.opts.text);
+    console.groupEnd();
+  console.groupEnd();
+  console.group('instance.opts.styles.color');
+    console.group('before');
+      console.log('base:', base.opts.styles.color);
+      console.log('instance:', instance.opts.styles.color);
+    console.groupEnd();
+    instance.opts.styles.color = 'green';
+    console.group('after');
+      console.log('base:', base.opts.styles.color);
+      console.log('instance:', instance.opts.styles.color);
+    console.groupEnd();
+  console.groupEnd();
+console.groupEnd();
+	</script>
+</head>
+<body>
+    <h1>Deep New</h1>
+</body>
+</html>
